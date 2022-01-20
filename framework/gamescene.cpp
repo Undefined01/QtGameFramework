@@ -73,7 +73,7 @@ void GameScene::keyPressEvent(QKeyEvent *ev) {
 void GameScene::keyReleaseEvent(QKeyEvent *ev) {
   if (ev->isAutoRepeat()) return;
   keyTable[ev->key()] = false;
-  keyUpTable[ev->key()] = false;
+  keyUpTable[ev->key()] = true;
   QGraphicsScene::keyReleaseEvent(ev);
 }
 void GameScene::focusOutEvent(QFocusEvent *ev) {
