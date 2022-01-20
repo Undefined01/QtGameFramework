@@ -16,6 +16,9 @@ protected:
 
 protected:
   virtual void mousePressEvent(QGraphicsSceneMouseEvent *ev) override;
+
+protected:
+  bool sceneEventFilter(QGraphicsItem *watched, QEvent *event) override;
 };
 
 #endif // TRANSFORM_H

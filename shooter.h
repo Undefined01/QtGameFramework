@@ -13,7 +13,7 @@ public:
   void onUpdate(float deltaTime) override;
 
 protected:
-  Transform *transform;
+  Transform *transform = nullptr;
 
   const float interval = .5;
   float cooldown = interval;
