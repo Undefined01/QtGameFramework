@@ -1,21 +1,21 @@
-#ifndef IMAGETRANSFORM_H
-#define IMAGETRANSFORM_H
+#ifndef FRAMEWORK_IMAGETRANSFORM_H_
+#define FRAMEWORK_IMAGETRANSFORM_H_
 
 #include "transform.h"
 
 class ImageTransform : public Transform {
-public:
-  ImageTransform(const char *path);
+ public:
+  explicit ImageTransform(const char *path);
 
   void setImage(const char *path);
 
-protected:
-  virtual QRectF boundingRect() const override;
-  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-                     QWidget *widget = nullptr) override;
+ protected:
+  QRectF boundingRect() const override;
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+             QWidget *widget = nullptr) override;
 
-protected:
+ protected:
   QImage image;
 };
 
-#endif // IMAGETRANSFORM_H
+#endif  // FRAMEWORK_IMAGETRANSFORM_H_

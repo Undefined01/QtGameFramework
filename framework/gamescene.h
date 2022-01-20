@@ -1,5 +1,5 @@
-#ifndef GAMESCENE_H
-#define GAMESCENE_H
+#ifndef FRAMEWORK_GAMESCENE_H_
+#define FRAMEWORK_GAMESCENE_H_
 
 #include <QGraphicsScene>
 #include <QList>
@@ -9,16 +9,17 @@ class GameObject;
 
 class GameScene final : public QGraphicsScene {
   Q_OBJECT
-public:
+
+ public:
   GameScene();
 
   // Game object management API
-public:
+ public:
   void attachGameObject(GameObject *gameObject);
   void detachGameObject(GameObject *gameObject);
   GameObject *getGameObject(const char *name);
 
-private:
+ private:
   QTimer *updateTimer = nullptr;
   QList<GameObject *> gameObjects;
   QList<GameObject *> gameObjectsToAttach;
@@ -27,18 +28,18 @@ private:
   void onUpdate();
 
   // Keyboard input API
-  // Require clearing keyDownArray and keyUpArray after update()
-public:
-  bool getKey(Qt::Key key) { return keyArray[key]; }
-  bool getKeyDown(Qt::Key key) { return keyDownArray[key]; }
-  bool getKeyUp(Qt::Key key) { return keyUpArray[key]; }
+ public:
+  bool getKey(Qt::Key key) { return keyTable[key]; }
+  bool getKeyDown(Qt::Key key) { return keyDownTable[key]; }
+  bool getKeyUp(Qt::Key key) { return keyUpTable[key]; }
 
-private:
-  QMap<int, bool> keyArray;
-  QMap<int, bool> keyDownArray, keyUpArray;
+  // Require clearing keyDownArray and keyUpArray after update()
+ private:
+  QMap<int, bool> keyTable;
+  QMap<int, bool> keyDownTable, keyUpTable;
   void keyPressEvent(QKeyEvent *ev) override;
   void keyReleaseEvent(QKeyEvent *ev) override;
   void focusOutEvent(QFocusEvent *ev) override;
 };
 
-#endif // GAMESCENE_H
+#endif  // FRAMEWORK_GAMESCENE_H_

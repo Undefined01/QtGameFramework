@@ -1,18 +1,18 @@
-#ifndef AMMO_H
-#define AMMO_H
+#ifndef AMMO_H_
+#define AMMO_H_
 
 #include <component.h>
 #include <gameobject.h>
 #include <transform.h>
 
 class Ammo : public Component {
-public:
+ public:
   explicit Ammo(QPointF velocity);
 
   void onAttach() override;
   void onUpdate(float deltaTime) override;
 
-protected:
+ protected:
   Transform *transform = nullptr;
   QGraphicsItem *collider = nullptr;
 
@@ -20,4 +20,4 @@ protected:
   QPointF velocity;
 };
 
-#endif // AMMO_H
+#endif  // AMMO_H_

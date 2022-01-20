@@ -1,5 +1,5 @@
-#ifndef COMPONENT_H
-#define COMPONENT_H
+#ifndef FRAMEWORK_COMPONENT_H_
+#define FRAMEWORK_COMPONENT_H_
 
 #include <QObject>
 
@@ -8,11 +8,12 @@ class QGraphicsSceneMouseEvent;
 
 class Component : public QObject {
   Q_OBJECT
-public:
-  explicit Component();
+
+ public:
+  Component();
 
   // Lifecycle functions
-public:
+ public:
   // GameObject 中所有 Component 已添加完成，在挂载到 GameScene 前调用
   virtual void onAttach() {}
   // GameScene 渲染第一帧前调用
@@ -23,7 +24,7 @@ public:
   virtual void onDetach() {}
 
   // Game object management API
-public:
+ public:
   // 将 gameObject 挂载到 GameScene 上
   void attachGameObject(GameObject *gameObject);
   // 将 gameObject 从 GameScene 中移除
@@ -32,7 +33,7 @@ public:
   void destory(GameObject *gameObject);
 
   // Keyboard input API
-public:
+ public:
   // 判断某个按键是否被按下
   bool getKey(Qt::Key key);
   // 判断某个按键是否在当前 update 帧中被按下
@@ -41,18 +42,19 @@ public:
   bool getKeyUp(Qt::Key key);
 
   // Mouse API
-public:
+ public:
   // 所属 gameObject 的 Transform 被点击时调用
   virtual void onClick(QGraphicsSceneMouseEvent *ev) {}
 
-public:
+  // Miscellaneous
+ public:
   GameObject *getParentGameObject();
   void setParentGameObject(GameObject *gameObject);
 
-protected:
+ protected:
   GameObject *gameObject = nullptr;
 
-signals:
+ signals:
 };
 
-#endif // COMPONENT_H
+#endif  // FRAMEWORK_COMPONENT_H_

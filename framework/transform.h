@@ -1,24 +1,25 @@
-#ifndef TRANSFORM_H
-#define TRANSFORM_H
+#ifndef FRAMEWORK_TRANSFORM_H_
+#define FRAMEWORK_TRANSFORM_H_
 
-#include "component.h"
 #include <QGraphicsItem>
 
+#include "component.h"
+
 class Transform : public Component, public QGraphicsItem {
-public:
+ public:
   Transform();
   explicit Transform(const QPointF &pos);
 
-protected:
-  virtual QRectF boundingRect() const override;
-  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-                     QWidget *widget = nullptr) override;
+ protected:
+  QRectF boundingRect() const override;
+  void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
+             QWidget *widget = nullptr) override;
 
-protected:
-  virtual void mousePressEvent(QGraphicsSceneMouseEvent *ev) override;
+ protected:
+  void mousePressEvent(QGraphicsSceneMouseEvent *ev) override;
 
-protected:
+ protected:
   bool sceneEventFilter(QGraphicsItem *watched, QEvent *event) override;
 };
 
-#endif // TRANSFORM_H
+#endif  // FRAMEWORK_TRANSFORM_H_

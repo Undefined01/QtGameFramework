@@ -56,9 +56,9 @@ else()
     endif()
 endif()
 
-target_link_libraries(Component PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_include_directories(Component PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/framework)
 
-target_include_directories(Component PRIVATE framework/)
+target_link_libraries(Component PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
 set_target_properties(Component PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

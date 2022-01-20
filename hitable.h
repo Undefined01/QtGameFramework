@@ -1,13 +1,13 @@
-#ifndef HITABLE_H
-#define HITABLE_H
+#ifndef HITABLE_H_
+#define HITABLE_H_
 
 #include <component.h>
 
 class Hitable : public Component {
-public:
-  explicit Hitable();
+ public:
+  Hitable();
 
   virtual void beHit();
 };
 
-#endif // HITABLE_H
+#endif  // HITABLE_H_

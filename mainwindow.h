@@ -1,9 +1,10 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_H_
+#define MAINWINDOW_H_
+
+#include <gamescene.h>
 
 #include <QGraphicsView>
 #include <QMainWindow>
-#include <gamescene.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -14,12 +15,12 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
-public:
-  MainWindow(QWidget *parent = nullptr);
+ public:
+  explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow();
 
-private:
+ private:
   Ui::MainWindow *ui;
   GameScene *gameScene;
 };
-#endif // MAINWINDOW_H
+#endif  // MAINWINDOW_H_

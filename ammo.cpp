@@ -1,9 +1,9 @@
 #include "ammo.h"
 
-#include "hitable.h"
-
 #include <QBrush>
 #include <QGraphicsEllipseItem>
+
+#include "hitable.h"
 
 Ammo::Ammo(QPointF velocity) : Component(), velocity(velocity) {}
 
@@ -24,15 +24,12 @@ void Ammo::onUpdate(float deltaTime) {
 
   this->transform->setPos(this->transform->pos() + velocity * deltaTime);
   for (auto item : this->collider->collidingItems()) {
-    while (item->parentItem() != nullptr)
-      item = item->parentItem();
+    while (item->parentItem() != nullptr) item = item->parentItem();
     auto transform = dynamic_cast<Transform *>(item);
-    if (transform == nullptr)
-      continue;
+    if (transform == nullptr) continue;
     auto gameObject = transform->getParentGameObject();
     auto hitable = gameObject->getComponent<Hitable>();
-    if (hitable == nullptr)
-      continue;
+    if (hitable == nullptr) continue;
     hitable->beHit();
     destory(this->gameObject);
     break;

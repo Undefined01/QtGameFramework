@@ -1,10 +1,11 @@
 #include "gamescene.h"
 
-#include "gameobject.h"
-#include "transform.h"
-
 #include <QKeyEvent>
 #include <QTimer>
+#include <utility>
+
+#include "gameobject.h"
+#include "transform.h"
 
 GameScene::GameScene() {
   updateTimer = new QTimer(this);
@@ -21,8 +22,7 @@ void GameScene::detachGameObject(GameObject *gameObject) {
 }
 GameObject *GameScene::getGameObject(const char *name) {
   for (auto gameObject : gameObjects) {
-    if (gameObject->objectName() == name)
-      return gameObject;
+    if (gameObject->objectName() == name) return gameObject;
   }
   return nullptr;
 }
@@ -44,8 +44,7 @@ void GameScene::onUpdate() {
     gameObject->setParentGameScene(nullptr);
     this->gameObjects.removeAll(gameObject);
     auto tf = gameObject->getComponent<Transform>();
-    if (tf != nullptr)
-      this->removeItem(tf);
+    if (tf != nullptr) this->removeItem(tf);
   }
   gameObjectsToDetach.clear();
 
@@ -54,34 +53,31 @@ void GameScene::onUpdate() {
     gameObject->setParentGameScene(this);
     this->gameObjects.append(gameObject);
     auto tf = gameObject->getComponent<Transform>();
-    if (tf != nullptr)
-      this->addItem(tf);
+    if (tf != nullptr) this->addItem(tf);
     gameObject->onAttach();
   }
   std::swap(gameObjectsToAttach, gameObjectsAttachedOnLastUpdate);
   gameObjectsToAttach.clear();
 
   // Keyboard input
-  keyDownArray.clear();
-  keyUpArray.clear();
+  keyDownTable.clear();
+  keyUpTable.clear();
 }
 
 void GameScene::keyPressEvent(QKeyEvent *ev) {
-  if (ev->isAutoRepeat())
-    return;
-  keyArray[ev->key()] = true;
-  keyDownArray[ev->key()] = true;
+  if (ev->isAutoRepeat()) return;
+  keyTable[ev->key()] = true;
+  keyDownTable[ev->key()] = true;
   QGraphicsScene::keyPressEvent(ev);
 }
 void GameScene::keyReleaseEvent(QKeyEvent *ev) {
-  if (ev->isAutoRepeat())
-    return;
-  keyArray[ev->key()] = false;
-  keyUpArray[ev->key()] = false;
+  if (ev->isAutoRepeat()) return;
+  keyTable[ev->key()] = false;
+  keyUpTable[ev->key()] = false;
   QGraphicsScene::keyReleaseEvent(ev);
 }
 void GameScene::focusOutEvent(QFocusEvent *ev) {
-  keyArray.clear();
-  keyDownArray.clear();
+  keyTable.clear();
+  keyDownTable.clear();
   QGraphicsScene::focusOutEvent(ev);
 }

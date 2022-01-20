@@ -1,16 +1,16 @@
-#ifndef HEALTH_H
-#define HEALTH_H
+#ifndef HEALTH_H_
+#define HEALTH_H_
 
 #include "hitable.h"
 
 class Health : public Hitable {
-public:
-  Health(int health);
+ public:
+  explicit Health(int health);
 
   void beHit() override;
 
-protected:
+ protected:
   int health;
 };
 
-#endif // HEALTH_H
+#endif  // HEALTH_H_

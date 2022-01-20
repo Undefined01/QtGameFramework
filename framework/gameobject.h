@@ -1,5 +1,5 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef FRAMEWORK_GAMEOBJECT_H_
+#define FRAMEWORK_GAMEOBJECT_H_
 
 #include <QObject>
 
@@ -9,16 +9,17 @@ class QGraphicsSceneMouseEvent;
 
 class GameObject final : public QObject {
   Q_OBJECT
-public:
-  explicit GameObject();
+
+ public:
+  GameObject();
 
   // Component management API
-public:
-  template <typename T> T *getComponent() {
+ public:
+  template <typename T>
+  T *getComponent() {
     for (auto component : components) {
       auto ptr = dynamic_cast<T *>(component);
-      if (ptr != nullptr)
-        return ptr;
+      if (ptr != nullptr) return ptr;
     }
     return nullptr;
   }
@@ -26,7 +27,7 @@ public:
   void removeComponent(Component *component);
 
   // Lifecycle functions
-public:
+ public:
   // GameObject 中所有 Component 已添加完成，在挂载到 GameScene 前调用
   void onAttach();
   // GameScene 渲染第一帧前调用
@@ -37,6 +38,7 @@ public:
   void onDetach();
 
   // Game object management API
+ public:
   // 将 gameObject 挂载到 GameScene 上
   void attachGameObject(GameObject *gameObject);
   // 将 gameObject 从 GameScene 中移除
@@ -45,7 +47,7 @@ public:
   void destory(GameObject *gameObject);
 
   // Keyboard input API
-public:
+ public:
   // 判断某个按键是否被按下
   bool getKey(Qt::Key key);
   // 判断某个按键是否在当前 update 帧中被按下
@@ -54,16 +56,16 @@ public:
   bool getKeyUp(Qt::Key key);
 
   // Mouse input API
-public:
+ public:
   // Transform 组件被点击时调用
   void onClick(QGraphicsSceneMouseEvent *ev);
 
-public:
+ public:
   void setParentGameScene(GameScene *gameScene);
 
-private:
+ private:
   GameScene *gameScene;
   QList<Component *> components;
 };
 
-#endif // GAMEOBJECT_H
+#endif  // FRAMEWORK_GAMEOBJECT_H_

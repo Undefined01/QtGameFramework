@@ -1,11 +1,11 @@
 #include "mainwindow.h"
-#include "./ui_mainwindow.h"
 
 #include <gameobject.h>
-#include <transform.h>
-
 #include <shooter.h>
 #include <summondummy.h>
+#include <transform.h>
+
+#include "./ui_mainwindow.h"
 
 void loadScene(GameScene *gameScene) {
   auto shooter = new GameObject();

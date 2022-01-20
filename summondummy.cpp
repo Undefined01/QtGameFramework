@@ -3,10 +3,10 @@
 #include <gameobject.h>
 #include <transform.h>
 
-#include "health.h"
-
 #include <QGraphicsRectItem>
 #include <QGraphicsSimpleTextItem>
+
+#include "health.h"
 
 SummonDummy::SummonDummy() {}
 

@@ -1,11 +1,10 @@
 #include "shooter.h"
 
-#include <gameobject.h>
-#include <transform.h>
+#include <QGraphicsRectItem>
 
 #include <ammo.h>
-
-#include <QGraphicsRectItem>
+#include <gameobject.h>
+#include <transform.h>
 
 Shooter::Shooter() : Component() {}
 
@@ -18,8 +17,7 @@ void Shooter::onAttach() {
 
 void Shooter::onUpdate(float deltaTime) {
   cooldown -= deltaTime;
-  if (cooldown > 0)
-    return;
+  if (cooldown > 0) return;
   cooldown = interval;
 
   QPointF velocity;

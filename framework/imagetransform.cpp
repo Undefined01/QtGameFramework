@@ -1,6 +1,7 @@
 #include "imagetransform.h"
 
 #include <QPainter>
+#include <utility>
 
 ImageTransform::ImageTransform(const char *path) {}
 
@@ -15,7 +16,6 @@ QRectF ImageTransform::boundingRect() const { return this->image.rect(); }
 void ImageTransform::paint(QPainter *painter,
                            const QStyleOptionGraphicsItem *option,
                            QWidget *widget) {
-  if (this->image.isNull())
-    return;
+  if (this->image.isNull()) return;
   painter->drawImage(this->boundingRect(), this->image);
 }
