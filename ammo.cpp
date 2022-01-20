@@ -19,7 +19,7 @@ void Ammo::onAttach() {
 void Ammo::onUpdate(float deltaTime) {
   timeToLive -= deltaTime;
   if (timeToLive < 0) {
-    this->gameObject->destory(this->gameObject);
+    destory(this->gameObject);
   }
 
   this->transform->setPos(this->transform->pos() + velocity * deltaTime);

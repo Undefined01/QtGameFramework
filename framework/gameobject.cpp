@@ -37,10 +37,10 @@ void GameObject::onDetach() {
 }
 
 void GameObject::attachGameObject(GameObject *gameObject) {
-  gameScene->attachGameObject(gameObject);
+  this->gameScene->attachGameObject(gameObject);
 }
 void GameObject::detachGameObject(GameObject *gameObject) {
-  gameScene->detachGameObject(gameObject);
+  this->gameScene->detachGameObject(gameObject);
 }
 
 void GameObject::destory(GameObject *gameObject) {
@@ -48,10 +48,14 @@ void GameObject::destory(GameObject *gameObject) {
   gameObject->deleteLater();
 }
 
-bool GameObject::getKey(Qt::Key key) { return this->gameScene->getKey(key); }
+bool GameObject::getKey(Qt::Key key) {
+    return this->gameScene->getKey(key);
+}
+
 bool GameObject::getKeyDown(Qt::Key key) {
   return this->gameScene->getKeyDown(key);
 }
+
 bool GameObject::getKeyUp(Qt::Key key) {
   return this->gameScene->getKeyUp(key);
 }
