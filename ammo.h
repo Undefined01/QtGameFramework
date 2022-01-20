@@ -13,8 +13,8 @@ public:
   void onUpdate(float deltaTime) override;
 
 protected:
-  Transform *transform;
-  QGraphicsItem *collisionItem;
+  Transform *transform = nullptr;
+  QGraphicsItem *collider = nullptr;
 
   float timeToLive = 1;
   QPointF velocity;

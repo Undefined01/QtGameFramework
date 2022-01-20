@@ -15,8 +15,8 @@ void SummonDummy::onAttach() {
   Q_ASSERT(transform != nullptr);
   auto text = new QGraphicsSimpleTextItem(transform);
   text->setText("生成假人");
-  // To handle mouse event of text in this->transform
-  transform->setHandlesChildEvents(true);
+  // Handle mouse event of text by this->transform
+  transform->setFiltersChildEvents(true);
 }
 
 void SummonDummy::onClick(QGraphicsSceneMouseEvent *ev) {
