@@ -6,8 +6,8 @@
 class ImageTransform : public Transform {
  public:
   explicit ImageTransform(const char *path);
-
-  void setImage(const char *path);
+  void setRect(const QRectF &rect);
+  void setPos(const QPointF &pos);
 
  protected:
   QRectF boundingRect() const override;
@@ -16,6 +16,7 @@ class ImageTransform : public Transform {
 
  protected:
   QImage image;
+  QRectF imageRect;
 };
 
 #endif  // FRAMEWORK_IMAGETRANSFORM_H_
