@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include <gameobject.h>
+#include <imagetransform.h>
 #include <shooter.h>
 #include <summondummy.h>
 #include <transform.h>
@@ -9,7 +10,9 @@
 
 void loadScene(GameScene *gameScene) {
   auto shooter = new GameObject();
-  shooter->addComponent(new Transform(QPointF(100, 100)));
+  auto t = new ImageTransform(QPointF(100, 100), "enemy_3_0.png");
+  t->setAlignment(Qt::AlignCenter);
+  shooter->addComponent(t);
   shooter->addComponent(new Shooter);
   gameScene->attachGameObject(shooter);
 

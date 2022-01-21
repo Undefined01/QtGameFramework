@@ -1,10 +1,10 @@
 #include "shooter.h"
 
-#include <QGraphicsRectItem>
-
 #include <ammo.h>
 #include <gameobject.h>
 #include <transform.h>
+
+#include <QGraphicsRectItem>
 
 Shooter::Shooter() : Component() {}
 
