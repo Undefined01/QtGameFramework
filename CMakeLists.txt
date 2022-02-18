@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(Component VERSION 0.1 LANGUAGES CXX)
+project(QtGameFramework VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -26,46 +26,47 @@ set(PROJECT_SOURCES
         framework/transform.h framework/transform.cpp
         framework/imagetransform.h framework/imagetransform.cpp
 
-        shooter.h shooter.cpp
         ammo.h ammo.cpp
-        summondummy.h summondummy.cpp
         health.h health.cpp
         hitable.h hitable.cpp
+        shooter.h shooter.cpp
+        summondummy.h summondummy.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(Component
+    qt_add_executable(QtGameFramework
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
     )
 # Define target properties for Android with Qt 6 as:
-#    set_property(TARGET Component APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
+#    set_property(TARGET QtGameFramework APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
     if(ANDROID)
-        add_library(Component SHARED
+        add_library(QtGameFramework SHARED
             ${PROJECT_SOURCES}
         )
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
     else()
-        add_executable(Component
+        add_executable(QtGameFramework
             ${PROJECT_SOURCES}
         )
     endif()
 endif()
 
-target_include_directories(Component PRIVATE ${CMAKE_SOURCE_DIR} ${CMAKE_SOURCE_DIR}/framework)
+target_include_directories(QtGameFramework PRIVATE framework/)
+target_link_libraries(QtGameFramework PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-target_link_libraries(Component PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
-set_target_properties(Component PROPERTIES
+set_target_properties(QtGameFramework PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+    MACOSX_BUNDLE TRUE
+    WIN32_EXECUTABLE TRUE
 )
 
 if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(Component)
+    qt_finalize_executable(QtGameFramework)
 endif()

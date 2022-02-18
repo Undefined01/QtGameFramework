@@ -7,15 +7,18 @@ ImageTransform::ImageTransform() {}
 ImageTransform::ImageTransform(QPointF pos, const char *path)
     : Transform(pos), image(path) {
   if (image.isNull()) qWarning("Fail to load image `%s`", path);
+  updateImageRect();
 }
 
 const QImage &ImageTransform::getImage() { return this->image; }
 bool ImageTransform::setImage(const char *path) {
+  bool succeeded = true;
   if (path != nullptr)
-    return this->image.load(path);
+    succeeded = this->image.load(path);
   else
-    this->image = std::move(QImage{});
-  return true;
+    this->image = QImage{};
+  updateImageRect();
+  return succeeded;
 }
 
 void ImageTransform::setOffset(QPointF offset) {
@@ -28,6 +31,7 @@ void ImageTransform::setAlignment(Qt::Alignment alignment) {
 }
 
 void ImageTransform::updateImageRect() {
+  this->prepareGeometryChange();
   imageRect = this->image.rect();
   imageRect.translate(this->offset);
   QPointF alignmentPoint;
@@ -61,5 +65,7 @@ void ImageTransform::paint(QPainter *painter,
                            const QStyleOptionGraphicsItem *option,
                            QWidget *widget) {
   if (this->image.isNull()) return;
+  Q_UNUSED(option);
+  Q_UNUSED(widget);
   painter->drawImage(this->boundingRect(), this->image);
 }

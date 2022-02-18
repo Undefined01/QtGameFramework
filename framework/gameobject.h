@@ -12,6 +12,7 @@ class GameObject final : public QObject {
 
  public:
   GameObject();
+  ~GameObject();
 
   // Component management API
  public:
@@ -64,7 +65,7 @@ class GameObject final : public QObject {
   void setParentGameScene(GameScene *gameScene);
 
  private:
-  GameScene *gameScene;
+  GameScene *gameScene = nullptr;
   QList<Component *> components;
 };
 

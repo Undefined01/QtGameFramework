@@ -53,8 +53,6 @@ class Component : public QObject {
 
  protected:
   GameObject *gameObject = nullptr;
-
- signals:
 };
 
 #endif  // FRAMEWORK_COMPONENT_H_

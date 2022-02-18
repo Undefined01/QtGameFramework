@@ -5,6 +5,11 @@
 #include "transform.h"
 
 GameObject::GameObject() : QObject() {}
+GameObject::~GameObject() {
+  if (this->gameScene != nullptr) {
+    detachGameObject(this);
+  }
+}
 
 void GameObject::addComponent(Component *component) {
   component->setParentGameObject(this);
