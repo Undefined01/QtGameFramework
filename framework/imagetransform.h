@@ -6,12 +6,15 @@
 class ImageTransform : public Transform {
  public:
   explicit ImageTransform();
-  explicit ImageTransform(QPointF pos, const char *path);
+  explicit ImageTransform(const QPointF &pos);
+  ImageTransform(const ImageTransform &) = delete;
+  ImageTransform &operator=(const ImageTransform &) = delete;
 
   const QImage &getImage();
   bool setImage(const char *path);
+  bool setImage(const QString &path);
 
-  void setOffset(QPointF offset);
+  void setOffset(const QPointF &offset);
   void setAlignment(Qt::Alignment alignment);
 
  protected:

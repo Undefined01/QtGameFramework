@@ -13,6 +13,8 @@ class GameObject final : public QObject {
  public:
   GameObject();
   ~GameObject();
+  GameObject(const GameObject &) = delete;
+  GameObject &operator=(const GameObject &) = delete;
 
   // Component management API
  public:

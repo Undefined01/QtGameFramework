@@ -4,11 +4,7 @@
 #include <utility>
 
 ImageTransform::ImageTransform() {}
-ImageTransform::ImageTransform(QPointF pos, const char *path)
-    : Transform(pos), image(path) {
-  if (image.isNull()) qWarning("Fail to load image `%s`", path);
-  updateImageRect();
-}
+ImageTransform::ImageTransform(const QPointF &pos) {}
 
 const QImage &ImageTransform::getImage() { return this->image; }
 bool ImageTransform::setImage(const char *path) {
@@ -20,8 +16,13 @@ bool ImageTransform::setImage(const char *path) {
   updateImageRect();
   return succeeded;
 }
+bool ImageTransform::setImage(const QString &path) {
+  bool succeeded = this->image.load(path);
+  updateImageRect();
+  return succeeded;
+}
 
-void ImageTransform::setOffset(QPointF offset) {
+void ImageTransform::setOffset(const QPointF &offset) {
   this->offset = offset;
   updateImageRect();
 }

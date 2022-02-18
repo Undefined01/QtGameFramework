@@ -14,6 +14,14 @@ GameScene::GameScene() {
   updateTimer->start();
 }
 
+GameScene::~GameScene() {
+  updateTimer->stop();
+  for (auto gameObject : gameObjects) {
+    gameObject->onDetach();
+    gameObject->setParentGameScene(nullptr);
+  }
+}
+
 void GameScene::attachGameObject(GameObject *gameObject) {
   gameObjectsToAttach.emplace_back(gameObject);
 }

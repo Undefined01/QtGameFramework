@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
         framework/component.h framework/component.cpp
         framework/transform.h framework/transform.cpp
         framework/imagetransform.h framework/imagetransform.cpp
+        framework/transformbuilder.h framework/transformbuilder.cpp
 
         ammo.h ammo.cpp
         health.h health.cpp

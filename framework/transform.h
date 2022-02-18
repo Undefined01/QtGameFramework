@@ -10,6 +10,15 @@ class Transform : public Component, public QGraphicsItem {
   Transform();
   explicit Transform(const QPointF &pos);
 
+  Transform(const Transform &) = delete;
+  Transform &operator=(const Transform &) = delete;
+
+  virtual int type() const override;
+  void setType(int type);
+
+ protected:
+  int mType = QGraphicsItem::Type;
+
  protected:
   QRectF boundingRect() const override;
   void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

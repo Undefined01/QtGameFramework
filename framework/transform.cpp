@@ -8,6 +8,9 @@
 Transform::Transform() {}
 Transform::Transform(const QPointF &pos) { this->setPos(pos); }
 
+int Transform::type() const { return mType; }
+void Transform::setType(int type) { mType = type; }
+
 QRectF Transform::boundingRect() const { return QRectF(); }
 void Transform::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                       QWidget *widget) {

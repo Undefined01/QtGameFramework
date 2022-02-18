@@ -12,6 +12,9 @@ class GameScene final : public QGraphicsScene {
 
  public:
   GameScene();
+  ~GameScene();
+  GameScene(const GameScene &) = delete;
+  GameScene &operator=(const GameScene &) = delete;
 
   // Game object management API
  public:
