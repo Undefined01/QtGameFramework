@@ -30,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
   gameScene = new GameScene();
   gameScene->setParent(this);
   auto view = new QGraphicsView(gameScene, this);
+  view->setFrameStyle(QFrame::NoFrame);
   view->resize(this->size());
-  view->setSceneRect(0, 0, 100, 100);
+  view->setSceneRect(QRect(0, 0, this->width(), this->height()));
 
   loadScene(gameScene);
 }
